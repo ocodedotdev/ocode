@@ -7,11 +7,49 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import toast from "react-hot-toast";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 import { CalendarCheck2 } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
+  const { toast } = useToast();
+  const [email, setEmail] = useState("");
+  const handleEmailSubmit = () => {
+    try {
+      fetch(`https://formspree.io/f/mayrjzkq`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+        }),
+      }).then(res => {
+        setEmail("");
+        toast({
+          title: "Thank you!",
+          description: "We'll send you an email once we are live :)",
+        });
+      });
+    } catch (error) {
+      console.error(error.message);
+      toast({
+        title: "Uh Oh!",
+        description: "Couldn't submit successfully",
+      });
+    }
+  };
   return (
     <main className="flex justify-center items-center h-screen">
       <section className="flex flex-col gap-5 items-center px-10">
@@ -22,36 +60,39 @@ export default function Home() {
           Discover exactly the tool you need to excel in development
         </p>
         <div className="flex gap-5">
-          <Button>Stay updated</Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                className="bg-indigo-500 text-white hover:bg-indigo-600 hover:text-gray-100"
+                variant="outline"
+              >
+                Stay updated
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Enter email</DialogTitle>
+                <DialogDescription>
+                  Stay relevant with our product updates
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <input
+                  type="email"
+                  className="p-2 bg-gray-300 dark:bg-slate-900 rounded outline-none focus:outline-none"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
+                <Button onClick={handleEmailSubmit}>Save changes</Button>
+              </div>
+            </DialogContent>
+          </Dialog>
           <button
             onClick={() =>
-              toast.custom(t =>
-                <div className="max-w-md w-full bg-white dark:bg-slate-900 text-black dark:text-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5">
-                  <div className="flex-1 w-0 p-4">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 pt-0.5">
-                        <CalendarCheck2 className="w-6" />
-                      </div>
-                      <div className="ml-3 flex-1 font-bold">
-                        <p className="text-sm font-medium">
-                          Will soon be Available
-                        </p>
-                        <p className="mt-1 text-sm font-light">
-                          Stay updated via email!
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex border-l border-gray-200">
-                    <button
-                      onClick={() => toast.dismiss(t.id)}
-                      className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              )}
+              toast({
+                title: "Will be available soon",
+                description: "Subscribe via email to receive product updates",
+              })}
             className="text-sm font-bold"
           >
             Try Demo

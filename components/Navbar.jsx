@@ -23,47 +23,36 @@ import styles from "./nav.module.css"
 
 const components = [
   {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
+    title: "Fast CDN",
+    href: "#",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "Accelerate your website's performance with our lightning-fast Content Delivery Network (CDN) technology.",
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
+    title: "Auto Workflow",
+    href: "#",
     description:
-      "For sighted users to preview content available behind a link.",
+      "Automate your development workflow and streamline repetitive tasks, saving you time and effort.",
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
+    title: "Error Tracking",
+    href: "#",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "Identify and resolve bugs quickly with our comprehensive error tracking system, ensuring a seamless user experience.",
   },
   {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    title: "Code Optimization",
+    href: "#",
+    description: "Optimize your codebase for maximum efficiency and performance.",
   },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-]
+];
+
 
 
 const Navbar = () => {
   const { setTheme, theme } = useTheme()
   return (
-    <nav className="flex w-full justify-between border-b items-center px-5 py-2">
+    <nav className="flex w-full justify-between border-b items-center px-5 py-2 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
       <p class={styles.glitch}>
         <span aria-hidden="true">OCode</span>
         OCode
@@ -83,30 +72,25 @@ const Navbar = () => {
                     >
                       {/* <Icons.logo className="h-6 w-6" /> */}
                       <div className="mb-2 mt-4 text-lg font-medium">
-                        shadcn/ui
+                        Our goal
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">
-                        Beautifully designed components that you can copy and
-                        paste into your apps. Accessible. Customizable. Open
-                        Source.
+                        We bring a revolution to the world of developers with the all new OCode
                       </p>
                     </a>
                   </NavigationMenuLink>
                 </li>
-                <ListItem href="/docs" title="Introduction">
-                  Re-usable components built using Radix UI and Tailwind CSS.
+                <ListItem href="/#" title="Introduction">
+                  Why OCode and how it can be useful in...
                 </ListItem>
-                <ListItem href="/docs/installation" title="Installation">
-                  How to install dependencies and structure your app.
-                </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Typography">
-                  Styles for headings, paragraphs, lists...etc
+                <ListItem href="/#" title="Pricing">
+                  OCode has free tier as well as pricing models...
                 </ListItem>
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+            <NavigationMenuTrigger>Features</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                 {components.map((component) => (
