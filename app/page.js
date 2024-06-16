@@ -21,11 +21,27 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { CalendarCheck2 } from "lucide-react";
-import { useState } from "react";
+import { MultiStepLoader as Loader } from "@/components/ui/multi-level";
+import { loadingStates } from "@/statics/config/loadingstates";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 export default function Home() {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
+
+  useEffect(()=>{
+    if(inView){
+      console.log('hitting')
+      setLoading(true)
+    }
+  }, [inView])
+
   const handleEmailSubmit = () => {
     try {
       fetch(`https://formspree.io/f/mayrjzkq`, {
@@ -100,7 +116,7 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <section className="h-screen">
+      <section className="h-auto pb-32" >
       <div className="grid gap-6 md:grid-cols-2 p-4 md:p-6">
         <Card className="flex flex-col min-w-[350px]">
           <CardHeader className="flex items-center justify-between">
@@ -211,6 +227,18 @@ export default function Home() {
         </Card>
       </div>
       </section>
+      <section className="section_3 flex flex-col justify-center items-center md:flex-row w-full gap-2 md:gap-0 px-8" ref={ref}>
+        <div className="min-w-[350px] h-[300px] px-4">
+          <Loader loadingStates={loadingStates} loading={loading} duration={2000} />
+        </div>
+        <div>
+          <h3 className="text-2xl md:text-5xl font-semibold">It Does Everything</h3>
+          <h3 className="text-3xl font-semibold text-indigo-100">Just mention it</h3>
+          <p className="text-sm text-gray-300 pt-3">From gathering requirements, to getting tasks done</p>
+        </div>
+      </section>
     </main>
   );
 }
+
+

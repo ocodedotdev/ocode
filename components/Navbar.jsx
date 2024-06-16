@@ -53,7 +53,7 @@ const Navbar = () => {
   const { setTheme, theme } = useTheme()
   return (
     <nav className="flex w-full justify-between border-b items-center px-5 py-2 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
-      <p class={styles.glitch}>
+      <p className={styles.glitch}>
         <span aria-hidden="true">OCode</span>
         OCode
         <span aria-hidden="true">OCode</span>
@@ -107,10 +107,27 @@ const Navbar = () => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <Button variant="outline" size="icon" onClick={() => setTheme(theme == "dark" ? "light" : "dark")}>
-        {console.log('theme', theme)}
+      <Button variant="outline" 
+      size="icon"
+      name="Check our Progress!"
+      onClick={()=> window.open('https://x.com/ocodedotev')}
+      // onClick={() => setTheme(theme == "dark" ? "light" : "dark")}
+        >
+        {/* {console.log('theme', theme)}
         {theme == "dark" ? <Sun className="h-[1.2rem] w-[1.2rem]" /> : <MoonStar className="absolute h-[1.2rem] w-[1.2rem]" />}
-        <span className="sr-only">Toggle theme</span>
+        <span className="sr-only">Toggle theme</span> */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={18}
+          height={18}
+          viewBox="0 0 24 24"
+          xmlSpace="preserve"
+        >
+          <path
+            fill="#fff"
+            d="M14.095 10.316 22.286 1h-1.94L13.23 9.088 7.551 1H1l8.59 12.231L1 23h1.94l7.51-8.543 6 8.543H23zm-2.658 3.022-.872-1.218L3.64 2.432h2.98l5.59 7.821.869 1.219 7.265 10.166h-2.982z"
+          />
+        </svg>
       </Button>
     </nav>
   )
