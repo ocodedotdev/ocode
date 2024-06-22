@@ -25,6 +25,7 @@ import { MultiStepLoader as Loader } from "@/components/ui/multi-level";
 import { loadingStates } from "@/statics/config/loadingstates";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { BentoLanding } from "@/modules/sections/BentoLanding";
 
 export default function Home() {
   const { toast } = useToast();
@@ -134,7 +135,7 @@ export default function Home() {
                 <h4 className="font-medium">Salary</h4>
                 {/* <p className="text-sm text-gray-500 dark:text-gray-400">Income, Savings, Investments</p> */}
               </div>
-              <div className="font-medium">$50,000</div>
+              <div className="font-medium">$50,000/year</div>
             </div>
             <div className="flex items-center justify-between">
               <div>
@@ -189,14 +190,14 @@ export default function Home() {
                 <h4 className="font-medium">Cost</h4>
                 {/* <p className="text-sm text-gray-500 dark:text-gray-400">Income, Savings, Investments</p> */}
               </div>
-              <div className="font-medium">$40/m</div>
+              <div className="font-medium">$480/year</div>
             </div>
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="font-medium">Availability</h4>
                 {/* <p className="text-sm text-gray-500 dark:text-gray-400">Work Hours, Leisure Time</p> */}
               </div>
-              <div className="font-medium">120 hrs/week</div>
+              <div className="font-medium">24*7</div>
             </div>
             <div className="flex items-center justify-between">
               <div>
@@ -227,7 +228,7 @@ export default function Home() {
         </Card>
       </div>
       </section>
-      <section className="section_3 flex flex-col justify-center items-center md:flex-row w-full gap-2 md:gap-0 px-8" ref={ref}>
+      <section className="section_3 flex flex-col justify-center items-center md:flex-row w-full gap-2 md:gap-0 px-8 min-h-[80vh]" ref={ref}>
         <div className="min-w-[350px] h-[300px] px-4">
           <Loader loadingStates={loadingStates} loading={loading} duration={2000} />
         </div>
@@ -237,6 +238,9 @@ export default function Home() {
           <p className="text-sm text-gray-300 pt-3">From gathering requirements, to getting tasks done</p>
         </div>
       </section>
+      {/* <section className="section_4 w-full md:w-8/12 px-8 min-h-[80vh]">
+          <BentoLanding />
+      </section> */}
     </main>
   );
 }

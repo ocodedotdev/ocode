@@ -1,8 +1,9 @@
 "use client"
 
-import { Link, MoonStar, Sun } from "lucide-react"
+import { MoonStar, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -107,10 +108,9 @@ const Navbar = () => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <Button variant="outline" 
-      size="icon"
+      <Link href="https://x.com/ocodedev"
       name="Check our Progress!"
-      onClick={()=> window.open('https://x.com/ocodedotev')}
+      className="border p-2 border-gray-700 rounded hover:bg-zinc-900 transition-all duration-200 x-btn"
       // onClick={() => setTheme(theme == "dark" ? "light" : "dark")}
         >
         {/* {console.log('theme', theme)}
@@ -128,7 +128,7 @@ const Navbar = () => {
             d="M14.095 10.316 22.286 1h-1.94L13.23 9.088 7.551 1H1l8.59 12.231L1 23h1.94l7.51-8.543 6 8.543H23zm-2.658 3.022-.872-1.218L3.64 2.432h2.98l5.59 7.821.869 1.219 7.265 10.166h-2.982z"
           />
         </svg>
-      </Button>
+      </Link>
     </nav>
   )
 }
